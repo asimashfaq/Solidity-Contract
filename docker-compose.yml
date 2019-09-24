@@ -1,0 +1,23 @@
+version: "3"
+services:
+  smart-contracts:
+    build: .
+    image: nodefactory/solidity-docker-starter:${IMAGE_TAG:-latest}
+    container_name: "${CONTAINER_NAME:-sc}"
+    volumes:
+          - .:/usr/app
+          - node_modules:/usr/app/node_modules
+          - contracts:/usr/app/installed_contracts
+          - types:/usr/app/types
+    depends_on:
+          - "ethereum"
+  ethereum:
+    image: trufflesuite/ganache-cli:v6.4.4
+    container_name: "${ETHEREUM_RPC_CONTAINER_NAME:-ethereum-rpc}"
+    command: ganache-cli -i ${ETHEREUM_NETWORK_ID:-666}
+    ports:
+          - "${ETHEREUM_NETWORK_EXPOSED_PORT:-8545}:8545"
+volumes:
+  node_modules:
+  contracts:
+  types:
