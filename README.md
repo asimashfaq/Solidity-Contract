@@ -4,7 +4,7 @@ Truffle + Docker + Mocha + Solidity+ Typescript
 
 Dependencies
 
-###Note : Download the Ganache App from the url below
+### Note : Download the Ganache App from the url below
 
 ```
 https://www.trufflesuite.com/ganache
